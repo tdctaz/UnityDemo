@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CubeSpawner : MonoBehaviour
 		{
 			var pos = new Vector3(Random.Range(-Bounds.x, Bounds.x), Random.Range(-Bounds.y, Bounds.y), Random.Range(-Bounds.z, Bounds.z));
 			var rotation = Quaternion.Euler(0, Random.Range(0.0001f, 360f), 0);
-			Instantiate(Instance, pos, rotation);
+			var instance = Instantiate(Instance, pos, rotation);
 		}
 	}
 }
