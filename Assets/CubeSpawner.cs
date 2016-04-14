@@ -13,7 +13,7 @@ public class CubeSpawner : MonoBehaviour
 		{
 			var pos = new Vector3(Random.Range(-Bounds.x, Bounds.x), Random.Range(-Bounds.y, Bounds.y), Random.Range(-Bounds.z, Bounds.z));
 			var rotation = Quaternion.Euler(0, Random.Range(0.0001f, 360f), 0);
-			var instance = Instantiate(Instance, pos, rotation);
+			Instantiate(Instance, pos, rotation);
 		}
 	}
 }

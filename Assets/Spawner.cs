@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+
 	}
 
 	void Update()
@@ -23,7 +24,7 @@ public class Spawner : MonoBehaviour
 		{
 			for (int i = 0; i < 499 && spawned < count; i++)
 			{
-				gos.Add(Instantiate(template));
+				gos.Add((GameObject)Instantiate(template, new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f)), Quaternion.identity));
 				spawned++;
 			}
 			elapsed = 0;
@@ -55,18 +56,18 @@ public class Spawner : MonoBehaviour
 			List<GameObject> gosInRoot = new List<GameObject>();
 			for (int i = 0; i < gos.Count; i++)
 			{
-				if (gos[i].transform.parent != null)
+				if (gos[i].transform.parent == null)
 					gosInRoot.Add(gos[i]);
 			}
 
 			if (gosInRoot.Count > 1)
 			{
-				var ape = Random.Range(0, gosInRoot.Count);
-				monkey = ape;
-				while (monkey == ape)
+				var ape = Random.Range(0, gos.Count);
+				monkey = Random.Range(0, gosInRoot.Count);
+				while (gosInRoot[monkey] == gos[ape])
 					monkey = Random.Range(0, gosInRoot.Count);
 
-				gosInRoot[monkey].transform.SetParent(gosInRoot[ape].transform);
+				gosInRoot[monkey].transform.SetParent(gos[ape].transform);
 			}
 		}
 	}
